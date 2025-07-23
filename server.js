@@ -10,7 +10,7 @@ const SUBPATH = process.env.ROUTE || '/app';
 app.use(SUBPATH, express.static(path.join(__dirname, 'build')));
 
 // For all other routes under subpath, serve index.html (for SPA routing)
-app.get(`*`, (req, res) => {
+app.get(`${SUBPATH}*`, (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
