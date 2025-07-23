@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = 3000;
+const PORT = 8050;
 
 // Subpath to serve the app on
 const SUBPATH = '/app';
