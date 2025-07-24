@@ -12,7 +12,7 @@ app.get('/readyz', (req, res) => {
 app.use(express.static(path.join(__dirname, 'build')));
 
 // For all other routes under subpath, serve index.html (for SPA routing)
-app.get(`${SUBPATH}/*`, (req, res) => {
+app.get(`${SUBPATH}*`, (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
