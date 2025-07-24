@@ -5,7 +5,9 @@ const PORT = 8050;
 
 // Subpath to serve the app on
 const SUBPATH = process.env.ROUTE || '/app';
-
+app.get('/readyz', (req, res) => {
+  res.status(200).send('OK');
+});
 // Serve static files under the subpath
 app.use(express.static(path.join(__dirname, 'build')));
 
