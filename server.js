@@ -7,7 +7,7 @@ const PORT = 8050;
 const SUBPATH = process.env.ROUTE || '/app';
 
 // Serve static files under the subpath
-app.use(SUBPATH, express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // For all other routes under subpath, serve index.html (for SPA routing)
 app.get(`${SUBPATH}/*`, (req, res) => {
