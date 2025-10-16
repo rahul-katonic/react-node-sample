@@ -4,31 +4,22 @@ const app = express();
 const PORT = 8050;
 
 // Subpath to serve the app on
-const SUBPATH = process.env.ROUTE || '/app';
-
-// Root route - shows app is working
-app.get(`${SUBPATH}`, (req, res) => {
-  res.json({
-    status: 'success',
-    message: 'App is working!',
-    timestamp: new Date().toISOString(),
-    port: PORT
-  });
-});
-
+//const SUBPATH = process.env.ROUTE || '/app';
+const SUBPATH = process.env.ROUTE + '/';
 app.get('/', (req, res) => {
-  res.status(200).send('Application Deployed');
-});
-
-// Ping route
-app.get('/ping', (req, res) => {
-  res.send('pong');
-});
-
-// Health check route
-app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
+
+app.get(SUBPATH, (req, res) => {
+  res.status(200).send('OK');
+});
+// Serve static files under the subpath
+// app.use(express.static(path.join(__dirname, 'build')));
+
+// For all other routes under subpath, serve index.html (for SPA routing)
+// app.get(`${SUBPATH}*`, (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 // Start server
 app.listen(PORT, () => {
