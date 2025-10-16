@@ -7,7 +7,7 @@ const PORT = 8050;
 const SUBPATH = process.env.ROUTE || '/app';
 
 // Root route - shows app is working
-app.get('/', (req, res) => {
+app.get(`${SUBPATH}/`, (req, res) => {
   res.json({
     status: 'success',
     message: 'App is working!',
