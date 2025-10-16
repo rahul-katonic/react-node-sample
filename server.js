@@ -16,13 +16,17 @@ app.get(`${SUBPATH}`, (req, res) => {
   });
 });
 
+app.get('/', (req, res) => {
+  res.status(200).send('Application Deployed');
+});
+
 // Ping route
 app.get('/ping', (req, res) => {
   res.send('pong');
 });
 
 // Health check route
-app.get('/readyz', (req, res) => {
+app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
