@@ -9,14 +9,42 @@ const SUBPATH = process.env.ROUTE + '/';
 // Middleware to parse JSON
 app.use(express.json());
 
-// Root health check endpoint
+// Root endpoint - serving HTML
 app.get('/', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'Application is running',
-    timestamp: new Date().toISOString(),
-    port: PORT
-  });
+  const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        
+        .center-text {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="center-text">
+        Hello World welcome to node react app deployment
+    </div>
+</body>
+</html>
+  `;
+  res.send(htmlContent);
 });
 
 // Subpath health check endpoint
@@ -41,7 +69,7 @@ app.get(`${SUBPATH}info`, (req, res) => {
     version: '1.0.0',
     description: 'This is a sample deployment to verify your Node.js environment',
     endpoints: [
-      { path: '/', method: 'GET', description: 'Root health check' },
+      { path: '/', method: 'GET', description: 'HTML homepage' },
       { path: SUBPATH, method: 'GET', description: 'App health check' },
       { path: `${SUBPATH}info`, method: 'GET', description: 'Application information' },
       { path: `${SUBPATH}status`, method: 'GET', description: 'Deployment status' }
